@@ -2,6 +2,13 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import Armor from './components/Armor'
 import Weapon from './components/Weapon'
+import Charm from './components/Charm'
+import Decoration from './components/Decoration'
+import ExpansionPanel from '@material-ui/core/ExpansionPanel';
+import Typography from '@material-ui/core/Typography';
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
+import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
 import './App.css';
 
 class App extends Component {
@@ -24,8 +31,28 @@ class App extends Component {
                 </a>
             </header>
 
-            <Armor />
+            <ExpansionPanel>
+                <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
+                    <Typography >Armor</Typography>
+                </ExpansionPanelSummary>
+                <ExpansionPanelDetails>
+                    <Armor />
+                </ExpansionPanelDetails>
+            </ExpansionPanel>
+
+            <ExpansionPanel>
+                <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
+                    <Typography >Weapon</Typography>
+                </ExpansionPanelSummary>
+                <ExpansionPanelDetails>
+                    <Weapon />
+                </ExpansionPanelDetails>
+            </ExpansionPanel>
+
+            {/* <Armor />
             <Weapon/>
+            <Charm/>
+            <Decoration/> */}
         </div>
 
     );
