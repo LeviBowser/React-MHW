@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
 
 // https://blog.hellojs.org/fetching-api-data-with-react-js-460fe8bbf8f2
 class Charm extends Component {
@@ -29,7 +30,10 @@ class Charm extends Component {
 
     render() {
         return (
-            <ol>{this.state.charms}</ol>
+            <List style={{ maxHeight: '200px', overflow: 'auto' }}>
+                {this.state.charms}
+            </List>
+            
         )
     }
 }

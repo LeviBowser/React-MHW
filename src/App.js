@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+// import logo from './logo.svg';
 import Armor from './components/Armor'
-import Weapon from './components/Weapon'
-import Charm from './components/Charm'
-import Decoration from './components/Decoration'
+// import Weapon from './components/Weapon'
+// import Charm from './components/Charm'
+// import Decoration from './components/Decoration'
 import ExpansionPanel from '@material-ui/core/ExpansionPanel';
 import Typography from '@material-ui/core/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
@@ -15,7 +15,7 @@ class App extends Component {
   render() {
     return (
         <div className="App">
-            <header className="App-header">
+            {/* <header className="App-header">
                 <img src={logo} className="App-logo" alt="logo" />
                 <p>
                     Edit <code>src/App.js</code> and save to reload.
@@ -29,8 +29,7 @@ class App extends Component {
                     Learn React
                     
                 </a>
-            </header>
-
+            </header> */}
             <ExpansionPanel>
                 <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
                     <Typography >Armor</Typography>
@@ -40,14 +39,14 @@ class App extends Component {
                 </ExpansionPanelDetails>
             </ExpansionPanel>
 
-            <ExpansionPanel>
+            {/* <ExpansionPanel>
                 <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
                     <Typography >Weapon</Typography>
                 </ExpansionPanelSummary>
                 <ExpansionPanelDetails>
                     <Weapon />
                 </ExpansionPanelDetails>
-            </ExpansionPanel>
+            </ExpansionPanel> */}
 
             {/* <Armor />
             <Weapon/>

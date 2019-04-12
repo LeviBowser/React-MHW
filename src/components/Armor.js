@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
+
 
 // https://blog.hellojs.org/fetching-api-data-with-react-js-460fe8bbf8f2
 class Armor extends Component {
@@ -49,9 +51,9 @@ class Armor extends Component {
                 }
 
                 return (
-                    <li _armorid={armor.id} id={armor.slug} key={armor.id}>
+                    <ListItem _armorid={armor.id} id={armor.slug} key={armor.id}>
                         {armor.name}
-                    </li>
+                    </ListItem>
                 )
             })
             this.setState({ armors: armors });
@@ -60,14 +62,13 @@ class Armor extends Component {
             this.setState({ chests: chests });
             this.setState({ waists: waists });
             this.setState({ legs: legs });
-            console.log("armors", this.state.armors);
         })
     }
 
     render(){
         return (
             // https://material-ui.com/demos/lists/
-            <List style={{ maxHeight: '100%', overflow: 'auto' }}>
+            <List style={{ maxHeight: '200px', overflow: 'auto' }}>
                 {this.state.armors}
             </List>
         )
