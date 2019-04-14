@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
+import ArmorPiece from './ArmorPiece'
+
 
 
 // https://blog.hellojs.org/fetching-api-data-with-react-js-460fe8bbf8f2
@@ -14,6 +16,7 @@ class Armor extends Component {
             chests: [],
             waists: [],
             legs: [],
+            isLoading: true,
         };
     }
 
@@ -62,15 +65,24 @@ class Armor extends Component {
             this.setState({ chests: chests });
             this.setState({ waists: waists });
             this.setState({ legs: legs });
+            this.setState({isLoading: false});
         })
     }
 
     render(){
+        if (this.state.isLoading) {
+            return <div>Loading Armors...</div>
+        }
+
         return (
             // https://material-ui.com/demos/lists/
-            <List style={{ maxHeight: '200px', overflow: 'auto' }}>
-                {this.state.armors}
-            </List>
+            // <List style={{ maxHeight: '200px', overflow: 'auto' }}>
+            //     {this.state.armors}
+            // </List>
+            <div>
+                <ArmorPiece armor={this.state.heads} />
+                {/* <ArmorPiece armor={this.state.chests} /> */}
+            </div>
         )
     }
 }
