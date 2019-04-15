@@ -4,6 +4,7 @@ import ListItem from '@material-ui/core/ListItem';
 // https://github.com/JedWatson/react-select
 import Select from 'react-select'
 
+const RESISTANCES = ['Dragon', 'Fire', 'Ice', 'Thunder', 'Water'];
 
 class ArmorPiece extends Component{
     constructor(props) {
@@ -53,52 +54,71 @@ class ArmorPiece extends Component{
             let foundArmor = this.state.armorPieces.find(function(armor) {
                 return armor.name === selectedOption.label && armor.id === selectedOption.value; 
             });
-            console.log(foundArmor);
             this.setState({selectedArmor: foundArmor})
+            // console.log(foundArmor);
         } else {
             this.setState({ selectedArmor: selectedOption});
         }
     }
 
-    displaySlots = (slotsObject) => {
+    displaySlots = (slotsArray) => {
         let count = 0;
-        let slots = slotsObject.map(function (slot) {
+        let slots = slotsArray.map(function (slot) {
             count = count + 1;
             let slotRankKey = slot.rank + count.toString();
-            console.log(slotRankKey)
+            // console.log(slotRankKey)
             return (
                 <li key={slotRankKey}>Slot level: {slot.rank}</li>
             )
         })
 
-        console.log(slots)
-
         return (
             <ol>{slots}</ol>
+        )
+    }
+    
+    displaySkills = (skillsArray) => {
+        let skills = [];
+        skillsArray.forEach(function(skill){
+            skills.push(
+                <li key={skill.id}>
+                    {skill.skillName} {skill.level}: {skill.description}
+                </li>
+            )
+        });
+
+        return (
+            <ol>{skills}</ol>
+        )
+    }
+    
+    displayResistances = (resistancesObject) => {
+        // console.log(resistancesObject);
+        let resistancesKeyValues = [];
+        RESISTANCES.forEach(function(resistance){
+            let keyValueString = resistance + ": " + resistancesObject[resistance.toLowerCase()];
+            resistancesKeyValues.push(
+                <li key={keyValueString}>
+                    {keyValueString}
+                </li>
+            )
+        });
+
+        return (
+            <ul>{resistancesKeyValues}</ul>
         )
     }
 
     render(){
         if(this.state.selectedArmor !== null && this.state.selectedArmor !== undefined){
             return (
-                // https://material-ui.com/demos/lists/
-                // <div>
-                //     <h2>
-                //         {this.state.armorType}
-                //     </h2>
-                //     <List style={{ maxHeight: '200px', overflow: 'auto' }}>
-                //         {this.state.armorList}
-                //     </List>
-                // </div>
                 <div>
                     <div style={{ width: '250px'}}>
                         <Fragment>
                             <Select
-                            // className="basic-single"
-                            // classNamePrefix="select"
                             isClearable="True"
                             isSearchable="True"
-                            defaultValue={this.state.listOptions[0]}
+                            value={this.state.selectedOption}
                             name={this.state.listOptions}
                             options={this.state.listOptions}
                             onChange={this.handleChange}
@@ -114,9 +134,11 @@ class ArmorPiece extends Component{
                         Armor defense (base): {this.state.selectedArmor.defense.base}<br/>
                         Armor defense (max): {this.state.selectedArmor.defense.max}<br />
                         Jewel Slots: {this.state.selectedArmor.slots.length}<br/>
-                        {this.displaySlots(this.state.selectedArmor.slots)}
+                        {this.displaySlots(this.state.selectedArmor.slots)}<br/>
                         Skills:<br />
+                        {this.displaySkills(this.state.selectedArmor.skills)}<br />
                         Resistances:<br />
+                        {this.displayResistances(this.state.selectedArmor.resistances)}<br/>
                     </div>
                 </div>
             )
@@ -129,7 +151,7 @@ class ArmorPiece extends Component{
                             // classNamePrefix="select"
                             isClearable="True"
                             isSearchable="True"
-                            defaultValue={this.state.listOptions[0]}
+                            value={this.state.selectedOption}
                             name={this.state.listOptions}
                             options={this.state.listOptions}
                             onChange={this.handleChange}
