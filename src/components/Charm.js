@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
+import CharmPiece from './CharmPiece';
 
 // https://blog.hellojs.org/fetching-api-data-with-react-js-460fe8bbf8f2
 class Charm extends Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         this.state = {
             charms: [],
+            isLoading: true
         };
     }
 
@@ -18,22 +18,24 @@ class Charm extends Component {
             }).then(data => {
                 let charms = data.map((charm) => {
                     return (
-                        <li _charmid={charm.id} id={charm.slug} key={charm.id}>
-                            {charm.name}{charm.type}
-                        </li>
+                        charm
                     )
                 })
                 this.setState({ charms: charms });
-                console.log("charm", this.state.charms);
+                this.setState({ isLoading: false });
+                // console.log("charm", this.state.charms);
             })
     }
 
     render() {
+        if (this.state.isLoading) {
+            return <div>Loading Charms...</div>
+        }
+
         return (
-            <List style={{ maxHeight: '200px', overflow: 'auto' }}>
-                {this.state.charms}
-            </List>
-            
+            <div>
+                <CharmPiece charms={this.state.charms} />
+            </div>
         )
     }
 }

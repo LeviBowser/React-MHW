@@ -1,14 +1,16 @@
 import React, { Component } from 'react';
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
 import ArmorPiece from './ArmorPiece'
-
+import ExpansionPanel from '@material-ui/core/ExpansionPanel';
+import Typography from '@material-ui/core/Typography';
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
+import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
 
 
 // https://blog.hellojs.org/fetching-api-data-with-react-js-460fe8bbf8f2
 class Armor extends Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         this.state = {
             armors: [],
             heads: [],
@@ -54,15 +56,13 @@ class Armor extends Component {
                 }
 
                 return (
-                    <ListItem _armorid={armor.id} id={armor.slug} key={armor.id}>
-                        {armor.name}
-                    </ListItem>
+                    armor
                 )
             })
             this.setState({ armors: armors });
             this.setState({ heads: heads });
-            this.setState({ gloves: gloves });
             this.setState({ chests: chests });
+            this.setState({ gloves: gloves });
             this.setState({ waists: waists });
             this.setState({ legs: legs });
             this.setState({isLoading: false});
@@ -75,14 +75,65 @@ class Armor extends Component {
         }
 
         return (
-            // https://material-ui.com/demos/lists/
-            // <List style={{ maxHeight: '200px', overflow: 'auto' }}>
-            //     {this.state.armors}
-            // </List>
             <div>
-                <ArmorPiece armor={this.state.heads} />
-                {/* <ArmorPiece armor={this.state.chests} /> */}
+                <ExpansionPanel>
+                    <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
+                        <Typography >Head</Typography>
+                    </ExpansionPanelSummary>
+                    <ExpansionPanelDetails>
+                        <ArmorPiece armor={this.state.heads} />
+                    </ExpansionPanelDetails>
+                </ExpansionPanel>
+                <ExpansionPanel>
+                    <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
+                        <Typography >Chest</Typography>
+                    </ExpansionPanelSummary>
+                    <ExpansionPanelDetails>
+                        <ArmorPiece armor={this.state.chests} />
+                    </ExpansionPanelDetails>
+                </ExpansionPanel>
+                <ExpansionPanel>
+                    <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
+                        <Typography >Gloves</Typography>
+                    </ExpansionPanelSummary>
+                    <ExpansionPanelDetails>
+                        <ArmorPiece armor={this.state.gloves} />
+                    </ExpansionPanelDetails>
+                </ExpansionPanel>
+                <ExpansionPanel>
+                    <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
+                        <Typography >Waist</Typography>
+                    </ExpansionPanelSummary>
+                    <ExpansionPanelDetails>
+                        <ArmorPiece armor={this.state.waists} />
+                    </ExpansionPanelDetails>
+                </ExpansionPanel>
+                <ExpansionPanel>
+                    <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
+                        <Typography >Legs</Typography>
+                    </ExpansionPanelSummary>
+                    <ExpansionPanelDetails>
+                        <ArmorPiece armor={this.state.legs} />
+                    </ExpansionPanelDetails>
+                </ExpansionPanel>
             </div>
+            // <div>
+            //     <div>
+            //         <ArmorPiece armor={this.state.heads} />
+            //     </div>
+            //     <div>
+            //         <ArmorPiece armor={this.state.gloves} />
+            //     </div>
+            //     <div>
+            //         <ArmorPiece armor={this.state.chests} />
+            //     </div>
+            //     <div>
+            //         <ArmorPiece armor={this.state.waists} />
+            //     </div>
+            //     <div>
+            //         <ArmorPiece armor={this.state.legs} />
+            //     </div>
+            // </div>
         )
     }
 }

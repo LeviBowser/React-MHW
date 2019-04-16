@@ -1,6 +1,4 @@
 import React, { Component, Fragment } from 'react';
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
 // https://github.com/JedWatson/react-select
 import Select from 'react-select'
 
@@ -8,10 +6,9 @@ const RESISTANCES = ['Dragon', 'Fire', 'Ice', 'Thunder', 'Water'];
 
 class ArmorPiece extends Component{
     constructor(props) {
-        super();
+        super(props);
         this.state = {
             armorPieces: props.armor,
-            armorList: [],
             armorType: "",
             listOptions: [],
             selectedOption: null,
@@ -23,28 +20,19 @@ class ArmorPiece extends Component{
         let armorType = "";
         let listOptions = [];
 
-        let armorList = this.state.armorPieces.map((armor) => {
+        this.state.armorPieces.map((armor) => {
 
             if (armorType === "" || armorType === undefined){
                 armorType = armor.type;
                 armorType = armorType.toUpperCase();
             }
-
             let tmpArmorItem = {
                 label: armor.name,
                 value: armor.id,
             } 
-
             listOptions.push(tmpArmorItem)
-            return (
-                <ListItem _armorid={armor.id} id={armor.name} key={armor.id}>
-                    {armor.name}
-                </ListItem>
-            )
         })
-
         this.setState({listOptions: listOptions});
-        this.setState({armorList: armorList});
         this.setState({armorType: armorType});
     }
 
@@ -73,7 +61,7 @@ class ArmorPiece extends Component{
         })
 
         return (
-            <ol>{slots}</ol>
+            <ul>{slots}</ul>
         )
     }
     
@@ -82,13 +70,13 @@ class ArmorPiece extends Component{
         skillsArray.forEach(function(skill){
             skills.push(
                 <li key={skill.id}>
-                    {skill.skillName} {skill.level}: {skill.description}
+                    {skill.skillName} lvl {skill.level} - {skill.description}
                 </li>
             )
         });
 
         return (
-            <ol>{skills}</ol>
+            <ul>{skills}</ul>
         )
     }
     
@@ -112,8 +100,8 @@ class ArmorPiece extends Component{
     render(){
         if(this.state.selectedArmor !== null && this.state.selectedArmor !== undefined){
             return (
-                <div>
-                    <div style={{ width: '250px'}}>
+                <div style={{ width: '250px' }}>
+                    <div >
                         <Fragment>
                             <Select
                             isClearable="True"
@@ -125,8 +113,14 @@ class ArmorPiece extends Component{
                             />
                         </Fragment>
                     </div>
-                    <div>####male image</div>
-                    <div>####female image</div>
+                    <div>
+                        <h3>Male:</h3>
+                        <img alt={ this.state.selectedArmor.name } src={this.state.selectedArmor.assets.imageMale}/>
+                    </div>
+                    <div>
+                        <h3>Female:</h3>
+                        <img alt={this.state.selectedArmor.name} src={this.state.selectedArmor.assets.imageFemale}/>
+                    </div>
                     <div>
                         Armor Name: {this.state.selectedArmor.name}<br/>
                         Armor Rank: {this.state.selectedArmor.rank}<br />

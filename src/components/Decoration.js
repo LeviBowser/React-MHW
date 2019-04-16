@@ -1,13 +1,12 @@
 import React, { Component } from 'react';
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
-
+import DecorationPiece from './DecorationPiece'
 // https://blog.hellojs.org/fetching-api-data-with-react-js-460fe8bbf8f2
 class Decoration extends Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         this.state = {
             decorations: [],
+            isLoading: true,
         };
     }
 
@@ -18,21 +17,28 @@ class Decoration extends Component {
             }).then(data => {
                 let decorations = data.map((decoration) => {
                     return (
-                        <li _decorationid={decoration.id} id={decoration.slug} key={decoration.id}>
-                            {decoration.name}
-                        </li>
+                        decoration
                     )
                 })
                 this.setState({ decorations: decorations });
-                console.log("decorations", this.state.decorations);
+                this.setState({ isLoading: false});
+                // console.log("decorations", this.state.decorations);
             })
     }
 
     render() {
+        if (this.state.isLoading) {
+            return <div>Loading Decorations...</div>
+        }
+
         return (
-            <List style={{ maxHeight: '200px', overflow: 'auto' }}>
-                {this.state.decorations}
-            </List>
+            // <List style={{ maxHeight: '200px', overflow: 'auto' }}>
+            //     {this.state.decorations}
+            // </List>
+
+            <div>
+                <DecorationPiece decorations={this.state.decorations} />
+            </div>
             
         )
     }
