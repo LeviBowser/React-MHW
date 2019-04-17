@@ -23,7 +23,7 @@ class App extends Component {
                 </ExpansionPanelDetails>
             </ExpansionPanel>
 
-            <ExpansionPanel>
+            {/* <ExpansionPanel>
                 <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
                     <Typography >Weapons</Typography>
                 </ExpansionPanelSummary>
@@ -48,7 +48,7 @@ class App extends Component {
                 <ExpansionPanelDetails>
                     <Decoration />
                 </ExpansionPanelDetails>
-            </ExpansionPanel>
+            </ExpansionPanel> */}
         </div>
     );
   }

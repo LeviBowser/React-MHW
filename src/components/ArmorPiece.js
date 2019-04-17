@@ -24,7 +24,6 @@ class ArmorPiece extends Component{
 
             if (armorType === "" || armorType === undefined){
                 armorType = armor.type;
-                armorType = armorType.toUpperCase();
             }
             let tmpArmorItem = {
                 label: armor.name,
@@ -43,9 +42,11 @@ class ArmorPiece extends Component{
                 return armor.name === selectedOption.label && armor.id === selectedOption.value; 
             });
             this.setState({selectedArmor: foundArmor})
+            this.props.onSelectArmor(foundArmor);
             // console.log(foundArmor);
         } else {
             this.setState({ selectedArmor: selectedOption});
+            this.props.onSelectArmor(selectedOption, this.state.armorType);
         }
     }
 
