@@ -36,6 +36,7 @@ class WeaponPiece extends Component {
                 }
 
                 listOptions.push(tmpweaponItem)
+                return true
             })
 
             state.listOptions = listOptions;
@@ -59,7 +60,8 @@ class WeaponPiece extends Component {
                 value: weapon.id,
             }
 
-            listOptions.push(tmpweaponItem)
+            listOptions.push(tmpweaponItem);
+            return true;
         })
         this.setState({ listOptions: listOptions });
         this.setState({ weaponType: weaponType });
@@ -71,7 +73,7 @@ class WeaponPiece extends Component {
             let foundweapon = this.state.weaponPieces.find(function (weapon) {
                 return weapon.name === selectedOption.label && weapon.id === selectedOption.value;
             });
-            this.setState({ selectedWeapon: foundweapon })
+            this.setState({ selectedWeapon: foundweapon });
             // console.log(foundweapon);
         } else {
             this.setState({ selectedWeapon: selectedOption });

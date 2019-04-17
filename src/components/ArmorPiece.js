@@ -29,7 +29,8 @@ class ArmorPiece extends Component{
                 label: armor.name,
                 value: armor.id,
             } 
-            listOptions.push(tmpArmorItem)
+            listOptions.push(tmpArmorItem);
+            return true;
         })
         this.setState({listOptions: listOptions});
         this.setState({armorType: armorType});
@@ -42,7 +43,7 @@ class ArmorPiece extends Component{
                 return armor.name === selectedOption.label && armor.id === selectedOption.value; 
             });
             this.setState({selectedArmor: foundArmor})
-            this.props.onSelectArmor(foundArmor);
+            this.props.onSelectArmor(foundArmor, this.state.armorType);
             // console.log(foundArmor);
         } else {
             this.setState({ selectedArmor: selectedOption});
@@ -128,6 +129,7 @@ class ArmorPiece extends Component{
                         Armor Rarity: {this.state.selectedArmor.rarity}<br />
                         Armor defense (base): {this.state.selectedArmor.defense.base}<br/>
                         Armor defense (max): {this.state.selectedArmor.defense.max}<br />
+                        Armor defense (Augmented): {this.state.selectedArmor.defense.max}<br />
                         Jewel Slots: {this.state.selectedArmor.slots.length}<br/>
                         {this.displaySlots(this.state.selectedArmor.slots)}<br/>
                         Skills:<br />

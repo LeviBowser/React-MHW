@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import ArmorPiece from './ArmorPiece'
+import ArmorPiece from './ArmorPiece';
 import ExpansionPanel from '@material-ui/core/ExpansionPanel';
 import Typography from '@material-ui/core/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
@@ -27,7 +27,7 @@ class Armor extends Component {
             selectedGloves: null,
             selectedChest: null,
             selectedWaist: null,
-            selectedLegs: null
+            selectedLegs: null,
         };
 
         this.handleArmorChange = this.handleArmorChange.bind(this);
@@ -102,8 +102,8 @@ class Armor extends Component {
                     console.log("Armor type not recognized: ", armor);
                     break;
             }
+            this.props.onSelectArmorPiece(armor, armor.type);
         } else {
-            // should clear only for the specific armor pieces. not all.
             switch (componentArmorType) {
                 case 'head':
                     this.setState({ selectedHead: null });
@@ -124,6 +124,7 @@ class Armor extends Component {
                     console.log("componentArmorType not recognized: ", componentArmorType);
                     break;
             }
+            this.props.onSelectArmorPiece(armor, componentArmorType);
         }
     }
 
@@ -140,7 +141,7 @@ class Armor extends Component {
                         <Typography >
                             Head 
                             {this.state.selectedHead !== null && 
-                                <img className="armor-icon" src={headImg}/>
+                                <img alt="armor-icon" className="armor-icon" src={headImg}/>
                             }
                         </Typography>
                     </ExpansionPanelSummary>
@@ -153,7 +154,7 @@ class Armor extends Component {
                         <Typography >
                             Chest
                             {this.state.selectedChest !== null && 
-                                <img className="armor-icon" src={chestImg}/>
+                                <img alt="armor-icon" className="armor-icon" src={chestImg}/>
                             }
                         </Typography>
                     </ExpansionPanelSummary>
@@ -166,7 +167,7 @@ class Armor extends Component {
                         <Typography >
                             Gloves
                             {this.state.selectedGloves !== null &&
-                                <img className="armor-icon" src={glovesImg}/>
+                                <img alt="armor-icon" className="armor-icon" src={glovesImg}/>
                             }
                         </Typography>
                     </ExpansionPanelSummary>
@@ -179,7 +180,7 @@ class Armor extends Component {
                         <Typography >
                             Waist
                             {this.state.selectedWaist !== null &&
-                                <img className="armor-icon" src={waistImg}/>
+                                <img alt="armor-icon" className="armor-icon" src={waistImg}/>
                             }
                         </Typography>
                     </ExpansionPanelSummary>
@@ -192,7 +193,7 @@ class Armor extends Component {
                         <Typography >
                             Legs
                             {this.state.selectedLegs !== null &&
-                                <img className="armor-icon" src={legsImg}/>
+                                <img alt="armor-icon" className="armor-icon" src={legsImg}/>
                             }
                         </Typography>
                     </ExpansionPanelSummary>
@@ -201,23 +202,6 @@ class Armor extends Component {
                     </ExpansionPanelDetails>
                 </ExpansionPanel>
             </div>
-            // <div>
-            //     <div>
-            //         <ArmorPiece armor={this.state.heads} />
-            //     </div>
-            //     <div>
-            //         <ArmorPiece armor={this.state.gloves} />
-            //     </div>
-            //     <div>
-            //         <ArmorPiece armor={this.state.chests} />
-            //     </div>
-            //     <div>
-            //         <ArmorPiece armor={this.state.waists} />
-            //     </div>
-            //     <div>
-            //         <ArmorPiece armor={this.state.legs} />
-            //     </div>
-            // </div>
         )
     }
 }

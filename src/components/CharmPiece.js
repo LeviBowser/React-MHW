@@ -2,8 +2,6 @@ import React, { Component, Fragment } from 'react';
 // https://github.com/JedWatson/react-select
 import Select from 'react-select'
 
-const RESISTANCES = ['Dragon', 'Fire', 'Ice', 'Thunder', 'Water'];
-
 class charmPiece extends Component {
     constructor(props) {
         super(props);
@@ -24,7 +22,8 @@ class charmPiece extends Component {
                 value: charm.id,
             }
 
-            listOptions.push(tmpcharmItem)
+            listOptions.push(tmpcharmItem);
+            return true;
         })
 
         this.setState({ listOptions: listOptions });

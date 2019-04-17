@@ -1,10 +1,5 @@
 import React, { Component, Fragment } from 'react';
 import WeaponPiece from './WeaponPiece';
-import ExpansionPanel from '@material-ui/core/ExpansionPanel';
-import Typography from '@material-ui/core/Typography';
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
-import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
 import Select from 'react-select'
 
 
